@@ -170,7 +170,6 @@ def draw_window(win, birds, pipes, base, score):
     for pipe in pipes:
         pipe.draw(win)
 
-
     text = STAT_FONT.render("Score: " + str(score), 1, (255, 255, 255))
     win.blit(text, (WIN_WIDTH - 10 - text.get_width(), 10))  # Moves as the score gets bigger
 
@@ -187,11 +186,11 @@ def main(genomes, config):  # Main function serves as a fitness function
     ge = []  # List of Genomes
     birds = []  # List of each bird
 
-    for _, g in genomes: # _ used to prevent errors of g being a tuple
+    for _, g in genomes:  # _ used to prevent errors of g being a tuple
         net = neat.nn.FeedForwardNetwork.create(g, config)
         nets.append(net)
-        birds.append(Bird(230,350))
-        g.fitness = 0 # Fitness of each bird initially 0
+        birds.append(Bird(230, 350))
+        g.fitness = 0  # Fitness of each bird initially 0
         ge.append(g)
 
     base = Base(730)  # Bottom of Screen - 70 pixel image
@@ -201,7 +200,7 @@ def main(genomes, config):  # Main function serves as a fitness function
     run = True
     score = 0
     while run:
-        #clock.tick(30)  # Limits the ticks (Essentially FPS)
+        # clock.tick(30)  # Limits the ticks (Essentially FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -218,20 +217,19 @@ def main(genomes, config):  # Main function serves as a fitness function
 
         for x, bird in enumerate(birds):
             bird.move()
-            ge[x].fitness += 0.1 # Reward per frame
+            ge[x].fitness += 0.1  # Reward per frame
 
-            output = nets[x].activate((bird.y, abs(bird.y - pipes[pipe_ind].height), abs(bird.y-pipes[pipe_ind].bottom)))
+            output = nets[x].activate(
+                (bird.y, abs(bird.y - pipes[pipe_ind].height), abs(bird.y - pipes[pipe_ind].bottom)))
 
-            if output[0] > 0.5: # Output is a list of output neurons (in this case there is only 1)
+            if output[0] > 0.5:  # Output is a list of output neurons (in this case there is only 1)
                 bird.jump()
-
-
 
         add_pipe = False
         rem = []
         for pipe in pipes:
             for x, bird in enumerate(birds):
-                if pipe.collide(bird): # Removing record of failed birds (hit pipe)
+                if pipe.collide(bird):  # Removing record of failed birds (hit pipe)
                     ge[x].fitness -= 1
                     birds.pop(x)
                     nets.pop(x)
@@ -266,10 +264,6 @@ def main(genomes, config):  # Main function serves as a fitness function
 
         base.move()
         draw_window(win, birds, pipes, base, score)
-
-
-
-
 
 
 def run(config_path):  # Running the NEAT Network
