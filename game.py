@@ -200,7 +200,7 @@ def main(genomes, config):  # Main function serves as a fitness function
     run = True
     score = 0
     while run:
-        # clock.tick(30)  # Limits the ticks (Essentially FPS)
+        clock.tick(60)  # Limits the ticks (Essentially FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
