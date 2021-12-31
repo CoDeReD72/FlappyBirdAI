@@ -3,6 +3,10 @@ import random
 import neat
 import pygame
 
+## TO RUN ##
+#pip install pygame
+#pip install neat-python
+
 WIN_WIDTH = 500
 WIN_HEIGHT = 800
 
