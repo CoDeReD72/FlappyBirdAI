@@ -6,3 +6,10 @@ A Python program mimicking the popular game Flappy Bird and implementing a neura
 * Random
 * OS
 * NEAT
+
+## Running the software
+Run the following commands in the python terminal
+* pip install pygame
+* pip install neat-python
+
+Run the program as required
