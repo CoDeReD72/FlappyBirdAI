@@ -1,5 +1,5 @@
 # FlappyBirdAI
-A Python program mimicking the popular game Flappy Bird and implementing a neural network onto it to create  an AI which can complete the game on its own
+A Python program mimicking the popular game Flappy Bird and implementing a neural network allowing the network to train and play the game (nearly) perfectly.
 
 ![Screenshot of Generation 0](imgs/Screenshot.png)
 
